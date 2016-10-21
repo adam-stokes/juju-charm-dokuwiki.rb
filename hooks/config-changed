@@ -10,5 +10,5 @@ unless Dir.exists? app_path
   FileUtils.mkdir_p app_path
 end
 
-`wget -q -O /tmp/dokuwiki.zip http://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
+`wget -q -O /tmp/dokuwiki.tgz http://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
 `tar xf /tmp/dokuwiki.tgz -C #{app_path} --strip-components=1`

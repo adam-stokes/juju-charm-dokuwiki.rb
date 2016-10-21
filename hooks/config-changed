@@ -1,13 +1,14 @@
 #!/usr/bin/env ruby
-require 'rubygems'
-require 'bundler/setup'
+require_relative 'bundle/bundler/setup'
+require 'charmkit'
 require 'fileutils'
 
-app_path = %x(config-get 'app_path')
-app_path.chomp!
-system "juju-log creating application path: #{app_path}"
+app_path = get 'app_path'
 
-FileUtils.mkdir_p app_path if !Dir.exists? app_path
+FileUtils.mkdir_p app_path unless Dir.exists? app_path
 
 `wget -q -O /tmp/dokuwiki.tgz http://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
-`tar xf /tmp/dokuwiki.tgz -C #{app_path} --strip-components=1`
+
+`tar xf /tmp/dokuwiki.tgz -C #{app_path} --strip-components=1` unless 
+
+`rm -rf #{app_path}/conf/install.php` unless File.exists? "#{app_path}/conf/install.php"

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/battlemidget/charmkitrb.git
+  revision: 379cf0cbe239a7fff6a1d823de98e1c5fc4cdba5
+  specs:
+    charmkit (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -7,6 +13,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  charmkit!
   minitest (~> 5)
 
 BUNDLED WITH

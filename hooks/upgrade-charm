@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-require 'rubygems'
-require 'bundler/setup'
+#!/bin/bash
 
-system "juju-log running upgrade-charm"
+cd hooks && (bundle update && bundle install --standalone)

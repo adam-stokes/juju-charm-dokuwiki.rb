@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler/setup'
+require 'fileutils'
+
+app_path = %x(config-get 'app_path')
+system "juju-log creating application path: #{app_path}"
+unless Dir.exists? app_path
+  FileUtils.mkdir_p app_path
+end

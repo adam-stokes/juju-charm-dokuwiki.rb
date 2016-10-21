@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -ux
+
+juju-log "Running install hook"
+
+
+status-set maintenance "Updating APT archive"
+apt-get update
+
+status-set maintenance "Installing ruby"
+apt-get install -qyf ruby
+
+status-set maintenance "Installing bundler"
+gem install bundler
+
+(cd hooks && bundle install)

@@ -1,0 +1,25 @@
+options:
+  app_path:
+    type: string
+    default: "/srv/app"
+    description: "Where Dokuwiki will be installed"
+  checksum:
+    type: string
+    default: "dfdb243cc766482eeefd99e70215b289c9aa0bd8bee83068f438440d7b1a1ce6"
+    description: "Dokuwiki sha256 checksum"
+  admin_user:
+    type: string
+    default: admin
+    description: "Admin username (default: admin)"
+  admin_password:
+    type: string
+    default: "5f4dcc3b5aa765d61d8327deb882cf99"
+    description: "Admin password md5 hash format (default password: password)"
+  admin_name:
+    type: string
+    default: "The Admin"
+    description: Admin name
+  admin_email:
+    type: string
+    default: "admin@example.com"
+    description: Admin email

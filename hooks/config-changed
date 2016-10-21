@@ -4,11 +4,10 @@ require 'bundler/setup'
 require 'fileutils'
 
 app_path = %x(config-get 'app_path')
+app_path.chomp!
 system "juju-log creating application path: #{app_path}"
 
-unless Dir.exists? app_path
-  FileUtils.mkdir_p app_path
-end
+FileUtils.mkdir_p app_path if !Dir.exists? app_path
 
 `wget -q -O /tmp/dokuwiki.tgz http://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
 `tar xf /tmp/dokuwiki.tgz -C #{app_path} --strip-components=1`

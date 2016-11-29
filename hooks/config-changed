@@ -13,13 +13,9 @@ app_path = config 'app_path'
 mkdir app_path unless is_dir? app_path
 
 release = config 'release'
-
-case release
-when "stable"
-  resource_path = resource 'stable-release'
-when "development"
-  resource_path = resource 'development-release'
-else
+begin
+  resource_path = resource "#{release}-release"
+rescue
   status :blocked, "Unknown release given #{release}"
   exit 1
 end

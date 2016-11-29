@@ -23,14 +23,16 @@ end
 run "tar xf #{resource_path} -C #{app_path} --strip-components=1"
 
 rm "#{app_path}/conf/install.php" unless !is_file? "#{app_path}/conf/install.php"
+
 cp "#{hook_path}/templates/acl.auth.php", "#{app_path}/conf/acl.auth.php"
 cp "#{hook_path}/templates/local.php", "#{app_path}/conf/local.php"
 cp "#{hook_path}/templates/plugins.local.php", "#{app_path}/conf/plugin.local.php"
-spew "/etc/dokuwiki-release", release
+
+file "/etc/dokuwiki-release", content: release
 
 case release
 when "stable"
-  version = slurp "#{app_path}/VERSION"
+  version = cat "#{app_path}/VERSION"
   run "application-version-set #{version}"
 when "development"
   t = Time.now

@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 require_relative '../bundle/bundler/setup'
 
-run "juju-log running start hook"
+log "running start hook"

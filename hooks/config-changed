@@ -10,7 +10,7 @@ package [
 hook_path = ENV['JUJU_CHARM_DIR']
 app_path = config 'app_path'
 
-mkdir app_path unless is_dir? app_path
+mkdir_p app_path unless is_dir? app_path
 
 release = config 'release'
 begin
@@ -23,3 +23,20 @@ end
 run "tar xf #{resource_path} -C #{app_path} --strip-components=1"
 
 rm "#{app_path}/conf/install.php" unless !is_file? "#{app_path}/conf/install.php"
+cp "#{hook_path}/templates/acl.auth.php", "#{app_path}/conf/acl.auth.php"
+cp "#{hook_path}/templates/local.php", "#{app_path}/conf/local.php"
+cp "#{hook_path}/templates/plugins.local.php", "#{app_path}/conf/plugin.local.php"
+spew "/etc/dokuwiki-release", release
+
+case release
+when "stable"
+  version = slurp "#{app_path}/VERSION"
+  run "application-version-set #{version}"
+when "development"
+  t = Time.now
+  version = t.strftime "%Y-%m-%d"
+  run "application-version-set development-#{version}"
+else
+  status :blocked, "Unable to set proper application version"
+  exit 1
+end

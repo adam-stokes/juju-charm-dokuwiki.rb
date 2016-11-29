@@ -11,3 +11,12 @@ series:
 tags:
   - php
   - wiki
+resources:
+  stable-release:
+    type: file
+    filename: stable.tgz
+    description: "Dokuwiki stable wiki source"
+  development-release:
+    type: file
+    filename: development.tar.gz
+    description: "Dokuwiki development wiki source"

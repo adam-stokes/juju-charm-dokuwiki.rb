@@ -8,4 +8,4 @@
 #
 # login:passwordhash:Real Name:email:groups,comma,seperated
 
-{{admin_user}}:{{admin_password}}:{{admin_name}}:{{admin_email}}:admin,user
+<%= $admin_user %>:<%= $admin_password %>:<%= $admin_name %>:<%= $admin_email %>:admin,user

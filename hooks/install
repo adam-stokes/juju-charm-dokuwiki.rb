@@ -4,4 +4,4 @@ apt-get update
 apt-get install -qyf ruby
 gem install bundler
 
-cd hooks && bundle install --standalone
+bundle install --standalone

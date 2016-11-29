@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    charmkit (0.2.0)
+      tty-command (~> 0.2.0)
+    equatable (0.5.0)
+    pastel (0.6.1)
+      equatable (~> 0.5.0)
+      tty-color (~> 0.3.0)
+    tty-color (0.3.0)
+    tty-command (0.2.0)
+      pastel (~> 0.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  charmkit
+
+BUNDLED WITH
+   1.13.6

@@ -22,7 +22,7 @@ end
 
 run "tar xf #{resource_path} -C #{app_path} --strip-components=1"
 
-rm "#{app_path}/conf/install.php" unless !is_file? "#{app_path}/conf/install.php"
+rm "#{app_path}/conf/install.php" if is_file? "#{app_path}/conf/install.php"
 
 cp "#{hook_path}/templates/acl.auth.php", "#{app_path}/conf/acl.auth.php"
 cp "#{hook_path}/templates/local.php", "#{app_path}/conf/local.php"
@@ -33,11 +33,11 @@ file "/etc/dokuwiki-release", content: release
 case release
 when "stable"
   version = cat "#{app_path}/VERSION"
-  run "application-version-set #{version}"
+  run "application-version-set '#{version}'"
 when "development"
   t = Time.now
   version = t.strftime "%Y-%m-%d"
-  run "application-version-set development-#{version}"
+  run "application-version-set 'development-#{version}'"
 else
   status :blocked, "Unable to set proper application version"
   exit 1

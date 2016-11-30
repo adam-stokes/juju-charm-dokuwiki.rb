@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
-cd hooks && (bundle update && bundle install --standalone)
+juju-log "Upgrading charm dependencies"
+bundle install --standalone --local --quiet

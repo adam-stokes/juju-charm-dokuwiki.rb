@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
+juju-log "Bootstrapping Charmkit"
 apt-get update
 apt-get install -qyf ruby
 gem install bundler
 
-bundle install --standalone
+bundle install --standalone --local --quiet

@@ -2,7 +2,6 @@ require 'charmkit'
 
 class ConfigChanged < Charmkit
   plugin :core
-  plugin :hookenv
 
   def summon
     app_path = config 'app_path'

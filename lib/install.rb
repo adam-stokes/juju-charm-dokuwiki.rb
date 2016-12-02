@@ -2,7 +2,6 @@ require 'charmkit'
 
 class Install < Charmkit
   plugin :core
-  plugin :hookenv
 
   def summon
     log "Installing required packages"

@@ -25,6 +25,9 @@ class ConfigChanged < Charmkit
              app_path: app_path
 
     chown_R 'www-data', 'www-data', app_path
+
+    # TODO: service :restart, "nginx"
+    # TODO: service :restart, "php7.0-fpm"
     run "systemctl restart php7.0-fpm"
     run "systemctl restart nginx"
     status :active, "Ready"

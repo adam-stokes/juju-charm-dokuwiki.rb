@@ -3,10 +3,6 @@ options:
     type: string
     default: "/srv/app"
     description: "Where Dokuwiki will be installed"
-  release:
-    type: string
-    default: "stable"
-    description: "Set whether to install from stable(default) or development release."
   admin_user:
     type: string
     default: admin

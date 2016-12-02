@@ -1,4 +1,4 @@
 #!/bin/sh
 
 juju-log "Upgrading charm dependencies"
-bundle install --standalone --local --quiet
+bundle install --local --quiet

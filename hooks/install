@@ -1,10 +1,8 @@
 #!/bin/sh
 
-if ! dpkg -s ruby > /dev/null; then
-    apt-get update && apt-get install -qyf ruby --no-install-recommends
-fi
+apt-get update && apt-get install -qyf ruby bundler --no-install-recommends
 
-gem install bundler && bundle install --local --quiet
+bundle install --local --quiet
 
 # Do install task
 bundle exec rake dokuwiki:install

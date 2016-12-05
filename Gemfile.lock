@@ -8,7 +8,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
   charmkit (~> 0.4.0)
   rake
 

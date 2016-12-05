@@ -4,10 +4,6 @@ class Install < Charmkit
   plugin :core
 
   log "Installing required packages"
-  package [
-    'nginx-full', 'php-fpm',      'php-cgi',      'php-curl', 'php-gd', 'php-json',
-    'php-mcrypt', 'php-readline', 'php-mbstring', 'php-xml'
-  ], :update_cache
   app_path = config 'app_path'
   hook_path = ENV['JUJU_CHARM_DIR']
 

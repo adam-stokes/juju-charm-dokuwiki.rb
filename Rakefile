@@ -4,11 +4,8 @@ require 'charmkit/plugins/php'
 
 namespace :dokuwiki do
 
-  desc "Install required apt packages"
-  task :install_deps => ["nginx:install", "php:install"] do; end
-
   desc "Install Dokuwiki"
-  task :install => [:install_deps] do
+  task :install => ["nginx:install", "php:install"] do
     app_path = `config-get app_path`.chomp
     resource_path = `resource-get stable-release`.chomp
     hook_path = ENV['JUJU_CHARM_DIR']

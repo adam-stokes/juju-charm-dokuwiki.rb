@@ -1,24 +1,11 @@
 require 'charmkit'
 require 'charmkit/plugins/nginx'
+require 'charmkit/plugins/php'
 
 namespace :dokuwiki do
 
   desc "Install required apt packages"
-  task :install_deps => ["nginx:install"] do
-    pkgs = [
-      'php-fpm',
-      'php-cgi',
-      'php-curl',
-      'php-gd',
-      'php-json',
-      'php-mcrypt',
-      'php-readline',
-      'php-mbstring',
-      'php-xml'
-    ]
-    `apt-get update`
-    `apt-get install -qyf #{pkgs.join(' ')}`
-  end
+  task :install_deps => ["nginx:install", "php:install"] do; end
 
   desc "Install Dokuwiki"
   task :install => [:install_deps] do

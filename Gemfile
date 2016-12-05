@@ -3,3 +3,4 @@ source "https://rubygems.org"
 
 gem "rake"
 gem "charmkit", "~> 0.4.0"
+gem "bundler"

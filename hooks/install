@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! dpkg -s ruby 2> /dev/null; then
+if ! dpkg -s ruby > /dev/null; then
     apt-get update && apt-get install -qyf ruby --no-install-recommends
 fi
 

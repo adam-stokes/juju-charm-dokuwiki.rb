@@ -1,14 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    charmkit (0.3.8)
+    charmkit (0.4.0)
     rake (10.4.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  charmkit (~> 0.3.8)
+  charmkit (~> 0.4.0)
   rake
 
 BUNDLED WITH

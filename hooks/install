@@ -6,4 +6,4 @@ gem install bundler
 
 bundle install --local --quiet
 
-bundle exec charmkit "install"
+bundle exec rake dokuwiki:install

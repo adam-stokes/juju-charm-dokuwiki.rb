@@ -1,3 +1,5 @@
+require 'charmkit'
+
 namespace :dokuwiki do
 
   desc "Install required apt packages"
@@ -12,32 +14,31 @@ namespace :dokuwiki do
 
   desc "Install Dokuwiki"
   task :install => [:install_deps] do
-    app_path = `config-get app_path`
-    resource_path = `resource-get stable-release`
+    app_path = `config-get app_path`.chomp
+    resource_path = `resource-get stable-release`.chomp
     hook_path = ENV['JUJU_CHARM_DIR']
 
     mkdir_p app_path unless Dir.exists? app_path
 
     `tar xf #{resource_path} -C #{app_path} --strip-components=1`
-    rm "#{app_path}/conf/install.php" if File.exists? "#{app_path}/conf/install.php"
     cp "#{hook_path}/templates/acl.auth.php", "#{app_path}/conf/acl.auth.php"
     cp "#{hook_path}/templates/local.php", "#{app_path}/conf/local.php"
     cp "#{hook_path}/templates/plugins.local.php", "#{app_path}/conf/plugin.local.php"
 
     version = File.read "#{app_path}/VERSION"
     `application-version-set '#{version}'`
-    `status-set active Dokuwiki Install finished.`
+    `status-set active "Dokuwiki Install finished."`
   end
 
   desc "Configure Dokuwiki"
-  task :configure do
-    app_path = `config-get app_path`
+  task :config_changed do
+    app_path = `config-get app_path`.chomp
     hook_path = ENV['JUJU_CHARM_DIR']
 
-    admin_user = `config-get #{admin_user}`
-    admin_password = `config-get admin_password`
-    admin_name = `config-get admin_name`
-    admin_email = `config-get admin_email`
+    admin_user = `config-get admin_user`.chomp
+    admin_password = `config-get admin_password`.chomp
+    admin_name = `config-get admin_name`.chomp
+    admin_email = `config-get admin_email`.chomp
     template "#{hook_path}/templates/users.auth.php",
              "#{app_path}/conf/users.auth.php",
              admin_user: admin_user,
@@ -45,17 +46,16 @@ namespace :dokuwiki do
              admin_name: admin_name,
              admin_email: admin_email
 
+    public_address = `unit-get public-address`.chomp
     template "#{hook_path}/templates/vhost.conf",
              "/etc/nginx/sites-enabled/default",
-             public_address: unit('public-address'),
+             public_address: public_address,
              app_path: app_path
 
     chown_R 'www-data', 'www-data', app_path
 
-    # TODO: service :restart, "nginx"
-    # TODO: service :restart, "php7.0-fpm"
     `systemctl restart php7.0-fpm`
     `systemctl restart nginx`
-    `status-set active Ready`
+    `status-set active "Ready"`
   end
 end

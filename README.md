@@ -18,3 +18,28 @@ Initial login and password are
 
     username: admin
     password: password
+
+# Developing
+
+## Setting up
+
+As long as you have ruby and bundler installed you can do the following:
+
+```
+bundle install
+bundle exec rake -T
+```
+
+All tasks are kept in **Rakefile** and are called via **hooks/{hook-name}**.
+
+# Author
+
+Adam Stokes <adam.stokes@ubuntu.com>
+
+# Copyright
+
+2016 Adam Stokes
+
+# License
+
+MIT

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem "charmkit", "~> 0.3.5"
+gem "rake"
+gem "charmkit", "~> 0.3.8"

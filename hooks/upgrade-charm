@@ -2,3 +2,7 @@
 
 juju-log "Upgrading charm dependencies"
 bundle install --local --quiet
+
+juju-log "Running install/config-changed tasks"
+bundle exec rake dokuwiki:install
+bundle exec rake dokuwiki:config_changed

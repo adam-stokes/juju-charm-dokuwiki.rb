@@ -1,5 +1,4 @@
 #!/bin/sh
 
-juju-log "Upgrade charm"
 ./hooks/install
 ./hooks/config-changed

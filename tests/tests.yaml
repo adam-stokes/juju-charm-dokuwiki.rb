@@ -1,0 +1,5 @@
+sources:
+  - ppa:juju/stable
+packages:
+  - ruby
+  - bundler

@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'charmkit'
+require 'yaml'
+
+if cmd.run!('juju run --application dokuwiki -- "bundle exec rspec --color --format doc"').failure?
+   exit 1
+end
+
+juju_status = YAML.load(cmd.run("juju status --format yaml").out)
+public_address = juju_status['applications']['dokuwiki']['units']['dokuwiki/0']['public-address']
+
+exit 1 unless cmd.run!("curl", "--silent", public_address).out.include?('start [Dokuwiki]')

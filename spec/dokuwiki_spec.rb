@@ -1,8 +1,10 @@
 require 'tty-command'
+require 'yaml'
 
 describe "Dokuwiki Charm:" do
-  before(:each) do
+  before(:all) do
     @cmd = TTY::Command.new(printer: :null)
+    @public_address = @cmd.run('unit-get public-address').out.chomp
   end
 
   describe "dokuwiki" do
@@ -19,6 +21,11 @@ describe "Dokuwiki Charm:" do
 
     it "has a vhost enabled file" do
       expect(File.exists?('/etc/nginx/sites-enabled/default')).to be true
+    end
+
+    it "has the public address in the vhost" do
+      vhost_out = File.read "/etc/nginx/sites-enabled/default"
+      expect(vhost_out).to  include("server_name #{@public_address};")
     end
   end
 

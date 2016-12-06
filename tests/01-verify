@@ -10,4 +10,4 @@ end
 juju_status = YAML.load(cmd.run("juju status --format yaml").out)
 public_address = juju_status['applications']['dokuwiki']['units']['dokuwiki/0']['public-address']
 
-exit 1 unless cmd.run!("curl", "--silent", public_address).out.include?('start [Dokuwiki]')
+exit 1 unless cmd.run!("curl --silent #{public_address}|head -n 10").out.include?('<title>start [Dokuwiki]</title>')

@@ -29,6 +29,40 @@ is provided in the `whois` package:
     $6$0zZwr8m.$K9kPKN4WpeViQ1F/B4QsBeZIP.4z8i0UNQctXtp8c8ibRIQ6Tn.BUuxI/.tM9NU0yLzLxBPcp7NXTLKkd4f5d1
     $ juju config dokuwiki admin_password='$6$0zZwr8m.$K9kPKN4WpeViQ1F/B4QsBeZIP.4z8i0UNQctXtp8c8ibRIQ6Tn.BUuxI/.tM9NU0yLzLxBPcp7NXTLKkd4f5d1'
 
+# Developers
+
+This charm uses Rake (a make like utility) for defining hooks and can be seen in
+the **Rakefile**. It also uses a simple library **Charmkit** for providing some
+additional helper methods such as templating.
+
+To learn more visit [Charmkit](https://github.com/charmkit/charmkit).
+
+
+# Maintainers
+
+## Testing
+
+The tests cover installation and verification that Dokuwiki is installed and
+running correctly. It'll also excercise the various `juju config` options along
+with automating the login of new user credentials for the admin account.
+
+## Ways to run the tests
+
+### Use bundletester
+
+```
+sudo bundletester -F -t cs:~adam-stokes/xenial/dokuwiki-23 -l DEBUG -v -r json -o /tmp/results.json
+```
+
+### Run tests via Ruby bundler
+
+```
+bundle install --local --with development
+bundle exec ./tests/verify
+```
+
+A few package dependencies are required for testing locally, have a look in **tests/tests.yaml** for those package names.
+
 # Author
 
 Adam Stokes <adam.stokes@ubuntu.com>

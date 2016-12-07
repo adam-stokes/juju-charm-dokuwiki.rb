@@ -8,6 +8,4 @@ packages:
   - build-essential
   - libxml2-dev
   - zlib1g-dev
-scripts:
-  - bundle install --local --with development
-  - bundle exec ruby ./tests/01-verify
+tests: "[0-9]*"

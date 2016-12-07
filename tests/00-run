@@ -1,0 +1,3 @@
+#!/bin/sh
+bundle install --local --quiet --with development
+bundle exec ./tests/verify

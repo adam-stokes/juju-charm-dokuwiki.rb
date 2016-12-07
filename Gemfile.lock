@@ -56,7 +56,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  charmkit (~> 0.4.4)
+  charmkit (= 0.4.4)
   mechanize
   rake
   rspec

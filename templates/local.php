@@ -13,3 +13,4 @@ $conf['gzip_output'] = 1;
 $conf['sitemap'] = 1;
 $conf['userewrite'] = '1';
 $conf['useslash'] = 1;
+$conf['passcrypt'] = 'sha512';

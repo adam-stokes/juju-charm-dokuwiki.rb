@@ -2,4 +2,5 @@ sources:
   - ppa:juju/stable
 packages:
   - ruby
+  - ruby-mechanize
   - bundler

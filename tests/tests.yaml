@@ -4,3 +4,4 @@ packages:
   - ruby
   - ruby-mechanize
   - bundler
+  - whois

@@ -10,7 +10,7 @@ cases beyond a traditional wiki.
 
 # Usage
 
-    $ juju deploy cs:~adam-stokes/dokuwiki
+    $ juju deploy cs:dokuwiki
 
 ## Login
 
@@ -18,6 +18,16 @@ Initial login and password are
 
     username: admin
     password: password
+
+## Generating a new password
+
+The easiest way to generate a new password is via the `mkpasswd` command which
+is provided in the `whois` package:
+
+    $ sudo apt install whois
+    $ mkpasswd -m sha-512 my_new_password@@@
+    $6$0zZwr8m.$K9kPKN4WpeViQ1F/B4QsBeZIP.4z8i0UNQctXtp8c8ibRIQ6Tn.BUuxI/.tM9NU0yLzLxBPcp7NXTLKkd4f5d1
+    $ juju config dokuwiki admin_password='$6$0zZwr8m.$K9kPKN4WpeViQ1F/B4QsBeZIP.4z8i0UNQctXtp8c8ibRIQ6Tn.BUuxI/.tM9NU0yLzLxBPcp7NXTLKkd4f5d1'
 
 # Author
 

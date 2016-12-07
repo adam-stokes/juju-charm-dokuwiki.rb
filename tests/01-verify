@@ -4,28 +4,29 @@ require 'charmkit'
 require 'yaml'
 require 'mechanize'
 
-juju_status = YAML.load(cmd.run("juju status --format yaml").out)
-public_address = juju_status['applications']['dokuwiki']['units']['dokuwiki/0']['public-address']
+@juju_status = YAML.load(cmd.run("juju status --format yaml").out)
+@public_address = @juju_status['applications']['dokuwiki']['units']['dokuwiki/1']['public-address']
 
-fail "Dokuwiki acceptance tests failed" if cmd.run!('juju run --application dokuwiki -- "bundle exec rspec --color --format doc"').failure?
-fail "Did not find correct dokuwiki title" unless cmd.run!("curl --silent #{public_address}|head -n 10").out.include?('<title>start [Dokuwiki]</title>')
-
-# 1. Tests the default admin/password config variables for logging in
-# 2. Tests with a new admin name and password
 def test_login(user, password)
+  cmd.run("juju config dokuwiki admin_user=#{user}")
+  new_password = cmd.run("mkpasswd -m sha-512 #{password}").out.chomp
+  cmd.run("juju config dokuwiki admin_password='#{new_password}'")
+
+  # sleep here for a few as the services catch up
+  sleep 5
   agent = Mechanize.new
-  page = agent.get("http://#{public_address}/start?do=login")
+  page = agent.get("http://#{@public_address}/start?do=login")
   login_form =  page.forms.last
   login_form.u = user
   login_form.p = password
   agent.submit(login_form, login_form.buttons.first)
-  admin_page = agent.get("http://#{public_address}/start?do=admin")
-  fail "Unable to load admin page" unless admin_page.title.include?("Admin [Dokuwiki]")
+  admin_page = agent.get("http://#{@public_address}/start?do=admin")
+  fail "Unable to load admin page with (#{user}/#{password}) credentials" unless admin_page.title.include?("Admin [Dokuwiki]")
 end
 
-user = cmd.run('juju config dokuwiki admin_user').out.chomp
-test_login(user, "password")
+fail "Dokuwiki acceptance tests failed" if cmd.run!('juju run --application dokuwiki -- "bundle exec rspec --color --format doc"').failure?
+fail "Did not find correct dokuwiki title" unless cmd.run!("curl --silent #{@public_address}|head -n 10").out.include?('<title>start [Dokuwiki]</title>')
 
-new_user = "test_admin"
-cmd.run("juju config dokuwiki admin_user=#{new_user}")
-password = "a_new_password"
+# 1. Tests with a new admin name and password
+test_login("bumblebeetuna", "boogie")
+test_login("the_admin_user", "another_password@@")

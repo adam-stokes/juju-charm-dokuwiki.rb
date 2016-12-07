@@ -2,7 +2,7 @@
 
 apt-get update && apt-get install -qyf ruby bundler --no-install-recommends
 
-bundle install --local --quiet
+bundle install --local --quiet --without development
 
 # Do install task
 bundle exec rake dokuwiki:install

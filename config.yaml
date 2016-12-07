@@ -9,8 +9,8 @@ options:
     description: "Admin username (default: admin)"
   admin_password:
     type: string
-    default: "5f4dcc3b5aa765d61d8327deb882cf99"
-    description: "Admin password md5 hash format (default password: password)"
+    default: $6$nzJoWjF10$ocTL4Zxbh7P6vQXhBz223NqviL9DdnUzDiYtnTv9sLHgzkemuC0q4sBZ4on2F7C/X3ALJHONmdMunAJqa3TVo0
+    description: "Admin password sha512 hash format (default password: password)"
   admin_name:
     type: string
     default: "The Admin"

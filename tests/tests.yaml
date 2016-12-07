@@ -2,6 +2,12 @@ sources:
   - ppa:juju/stable
 packages:
   - ruby
-  - ruby-mechanize
   - bundler
   - whois
+  - libstdc++-5-dev
+  - build-essential
+  - libxml2-dev
+  - zlib1g-dev
+scripts:
+  - bundle install --local --with development
+  - bundle exec ruby ./tests/01-verify

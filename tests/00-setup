@@ -1,2 +1,2 @@
 #!/bin/sh
-bundle install --local --quiet
+bundle install --local --quiet --without development

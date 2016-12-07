@@ -12,7 +12,7 @@ namespace :dokuwiki do
 
     mkdir_p app_path unless Dir.exists? app_path
 
-    cmd.run "tar", "xf" ,resource_path, "-C", app_path, "--strip-components=1"
+    cmd.run "tar", "xf", resource_path, "-C", app_path, "--strip-components=1"
 
     cp "#{hook_path}/templates/acl.auth.php", "#{app_path}/conf/acl.auth.php"
     cp "#{hook_path}/templates/local.php", "#{app_path}/conf/local.php"

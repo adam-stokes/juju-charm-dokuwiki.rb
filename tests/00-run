@@ -1,5 +1,5 @@
 #!/bin/sh
-juju deploy .
+juju deploy cs:~adam-stokes/dokuwiki
 juju wait
 
 bundle install --local --quiet --with development

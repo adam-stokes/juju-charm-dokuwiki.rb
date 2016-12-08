@@ -5,12 +5,12 @@ options:
     description: "Where Dokuwiki will be installed"
   admin_user:
     type: string
-    default: admin
-    description: "Admin username (default: admin)"
+    default: ""
+    description: "Admin username"
   admin_password:
     type: string
-    default: $6$nzJoWjF10$ocTL4Zxbh7P6vQXhBz223NqviL9DdnUzDiYtnTv9sLHgzkemuC0q4sBZ4on2F7C/X3ALJHONmdMunAJqa3TVo0
-    description: "Admin password sha512 hash format (default password: password)"
+    default: ""
+    description: "Admin password sha512 hash format (see README for using mkpasswd to generate one.)"
   admin_name:
     type: string
     default: "The Admin"

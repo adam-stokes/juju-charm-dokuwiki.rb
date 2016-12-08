@@ -10,4 +10,5 @@ packages:
   - libxml2-dev
   - zlib1g-dev
   - juju-wait
+  - curl
 tests: "[0-9]*"

@@ -20,7 +20,7 @@ namespace :dokuwiki do
 
     version = File.read "#{app_path}/VERSION"
     cmd.run "application-version-set", version.chomp
-    cmd.run "status-set", "active", "Dokuwiki Install finished."
+    cmd.run "status-set", "active", "Dokuwiki installed, please set your admin user and password with juju config dokuwiki admin_user=<an_admin_name> admin_password=<sha512 password>"
   end
 
   desc "Configure Dokuwiki"

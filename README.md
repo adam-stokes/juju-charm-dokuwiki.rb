@@ -12,14 +12,11 @@ cases beyond a traditional wiki.
 
     $ juju deploy cs:dokuwiki
 
-## Login
+## Set the admin username
 
-Initial login and password are
+    $ juju config dokuwiki admin_user="my_admin"
 
-    username: admin
-    password: password
-
-## Generating a new password
+## Generate a new password for the admin user
 
 The easiest way to generate a new password is via the `mkpasswd` command which
 is provided in the `whois` package:

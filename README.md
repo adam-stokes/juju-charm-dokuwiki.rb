@@ -51,7 +51,7 @@ with automating the login of new user credentials for the admin account.
 ### Use bundletester
 
 ```
-sudo bundletester -F -t cs:~adam-stokes/xenial/dokuwiki-23 -l DEBUG -v -r json -o /tmp/results.json
+sudo bundletester -F -t cs:~adam-stokes/dokuwiki -l DEBUG -v -r json -o /tmp/results.json
 ```
 
 ### Run tests via Ruby bundler

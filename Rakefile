@@ -49,6 +49,7 @@ namespace :dokuwiki do
 
     cmd.run "systemctl", "restart", "php7.0-fpm"
     cmd.run "systemctl", "restart", "nginx"
+    cmd.run "open-port 80"
     cmd.run "status-set", "active", "Dokuwiki updated and is now ready."
   end
 end

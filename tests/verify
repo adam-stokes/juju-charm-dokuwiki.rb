@@ -8,6 +8,8 @@ require 'mechanize'
 dokuwiki_unit = @juju_status['applications']['dokuwiki']['units'].first[0]
 @public_address = @juju_status['applications']['dokuwiki']['units'][dokuwiki_unit]['public-address']
 
+cmd.run('juju expose dokuwiki')
+
 def test_login(user, password)
   cmd.run("juju config dokuwiki admin_user=#{user}")
   new_password = cmd.run("mkpasswd -m sha-512 #{password}").out.chomp

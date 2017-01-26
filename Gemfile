@@ -3,7 +3,10 @@ source "https://rubygems.org"
 
 gem "rake"
 gem "rspec"
-gem "charmkit", "= 0.4.4"
+gem "charmkit", "~> 1.0"
+
+gem "charmkit-scrolls-nginx", :github => "charmkit/charmkit-scrolls-nginx"
+gem "charmkit-scrolls-php", :github => "charmkit/charmkit-scrolls-php"
 
 # Bundletester will install its own mechanize via apt install ruby-mechanize
 # see hooks/install for the bundle command we run without development on our production

@@ -1,12 +1,11 @@
 require 'charmkit'
+use :nginx
+use :php
 
 namespace :dokuwiki do
 
   desc "Install Dokuwiki"
   task :install do
-    use :nginx
-    use :php
-
     deps.install
 
     app_path = config 'app_path'
